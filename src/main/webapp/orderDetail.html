@@ -1,0 +1,203 @@
+<!doctype html>
+<html ng-app="Phulmoo">
+<head>
+<title>Order Detail</title>
+<a href="home.html"></a>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-route.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<script type="text/javascript" src="js/angular-chart.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery-validate.min.js"></script>
+
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/Util.js"></script>
+<script type="text/javascript" src="js/RegistrationController.js"></script>
+<script type="text/javascript" src="js/controller/HomeController.js"></script>
+<script type="text/javascript" src="js/controller/CatalogsController.js"></script>
+<script type="text/javascript" src="js/controller/AboutUsController.js"></script>
+<script type="text/javascript" src="js/CatalogDetailController.js"></script>
+<script type="text/javascript" src="js/OrderDetailController.js"></script>
+<script type="text/javascript" src="https://js.instamojo.com/v1/checkout.js"></script>
+      <script type="text/javascript">
+         function loadMojo(){
+         Instamojo.configure({
+			handlers: {
+			  onOpen: function() {},
+			  onClose: function() {},
+			  onSuccess: function(response) {
+				alert('success');
+			  },
+			  onFailure: function(response) {
+				alert('falied');
+			  }
+			}
+		  });
+		  }
+		  function startPay(){
+		  Instamojo.open("https://instamojo.com/@phulmoo");
+		  }
+      </script>
+      <script>
+         $(document).ready(function (){
+            $("#nav-placeholder").load("index.html");
+			loadMojo();
+         });
+      </script>
+</head>
+<body ng-controller="OrderDetailController">
+<div id="nav-placeholder"></div>
+<div class='container' style="margin-top: 30px;">
+    <div class='row'>
+        <div class='col-md-12'>
+            <div id='mainContentWrapper'>
+                <div class="col-md-12 col-md-offset-0">
+                    <div class="shopping_cart">
+                        <form class="form-horizontal" role="form" action="" method="post" id="payment-form">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                  <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                                <a ><b>Review
+                                                Your Order</b></a>
+                                        </h4>
+                                    </div>
+                                    </div>
+                                    <div class="container" style="width: 100%;">
+	<table id="cart" class="table table-hover table-condensed">
+                                    <thead>
+						<tr>
+							<th style="width:50%">Product</th>
+							<th style="width:10%">Price</th>
+							<th style="width:8%">Quantity</th>
+							<th style="width:22%" class="text-center">Subtotal</th>
+							<th style="width:10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+					 
+						<tr ng-repeat="item in products">
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="" alt="" class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<h4 class="nomargin">{{item.productName}}</h4>
+										<p>...........</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">{{item.productPrice}}</td>
+							<td data-th="Quantity">
+								<input type="number" class="form-control text-center" value="1">
+							</td>
+							<td data-th="Subtotal" class="text-center">{{item.productPrice}}</td>
+							<td class="actions" data-th="">
+								<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+								<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
+							</td>
+						</tr>
+					</tbody>
+					</table>
+					</div>
+                            <h4 >
+                                <div style="text-align: center; width:40%;">
+                                <a style="width:100%; height: 40px; font-size: 20px;"
+                                   data-toggle="collapse"
+                                   class="btn btn-danger"
+                                   onclick="$(this).fadeOut(); $('#payInfo').fadeIn();">Continue to billing information</a></div>
+                                    </h4>
+                             <div class="panel-group" id="contact_billing_information">
+                                <div class="panel panel-default">
+                                   <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                                <a>
+                                            <b>Contact and billing </b>
+                                        </a>
+                                        </h4>
+                                    </div>
+                                    </div>
+                                    <div id="contact_billing_information" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                        <br/>
+                                        <table class="table table-striped" style="font-weight: bold;">
+                                            <tr>
+                                                <td style="width: 175px;">
+                                                    <label for="id_email">Email Address:</label></td>
+                                                <td>
+                                                    <input class="form-control" id="id_email" name="first_name"
+													ng-model="OrderEmail" type="text"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 175px;">
+                                                    <label for="id_first_name">Name:</label></td>
+                                                <td>
+                                                    <input class="form-control" id="id_name" name="first_name"
+                                                           required="required" ng-model="OrderShipName" type="text"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 175px;">
+                                                    <label for="id_address_line_1">Address:</label></td>
+                                                <td>
+                                                    <input class="form-control" id="id_address"
+                                                           name="address_line_1" required="required" ng-model="OrderShipAddress" type="text"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 175px;">
+                                                    <label for="id_city">City:</label></td>
+                                                <td>
+                                                    <input class="form-control" id="id_city" name="city"
+                                                           required="required" ng-model="OrderCity" type="text"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 175px;">
+                                                    <label for="id_postalcode">Postalcode:</label></td>
+                                                <td>
+                                                    <input class="form-control" id="id_postalcode" name="postalcode"
+                                                           required="required" ng-model="OrderZip" type="text"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 175px;">
+                                                    <label for="id_phone">Phone:</label></td>
+                                                <td>
+                                                    <input class="form-control" id="id_phone" name="phone" ng-model="OrderPhone" type="text"/>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+						<button type="button" class="btn btn-danger btn-lg" style="width:30%;" ng-click="validateAndProcessOrder()">Proceed & Pay
+					</button>
+					<br/>
+					<div style="text-align: left;"><br/>
+						If you have any questions about our products or services please contact us
+						before placing this order.
+					</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+

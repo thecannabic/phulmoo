@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>Invoice</title>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+      </link>
+      <link rel="icon" type="image/png" href="images/favicon.png">
+      <link type="text/css" rel="stylesheet" href="css/home.css">
+      </link>
+      <link type="text/css" rel="stylesheet" href="css/catalogs.css">
+      </link>
+      <link type="text/css" rel="stylesheet" href="css/catalogs-detail.css">
+      </link>
+      <link type="text/css" rel="stylesheet" href="css/cart.css">
+      </link>
+      <script type="text/javascript" src="js/angular.min.js"></script>
+      <script type="text/javascript" src="js/angular-route.min.js"></script>
+      <script type="text/javascript" src="js/moment.min.js"></script>
+      <script type="text/javascript" src="js/Chart.min.js"></script>
+      <script type="text/javascript" src="js/angular-chart.min.js"></script>
+      <script type="text/javascript" src="js/jquery.min.js"></script>
+      <script type="text/javascript" src="js/ui-bootstrap.2.5.0.min.js"></script>
+      <script type="text/javascript" src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/jquery-validate.min.js"></script>
+      <script type="text/javascript" src="js/app.js"></script>
+      <script type="text/javascript" src="js/Util.js"></script>
+      <script type="text/javascript" src="js/RegistrationController.js"></script>
+      <script type="text/javascript" src="js/controller/HomeController.js"></script>
+      <script type="text/javascript" src="js/controller/CatalogsController.js"></script>
+      <script type="text/javascript" src="js/controller/AboutUsController.js"></script>
+      <script type="text/javascript" src="js/controller/RegisterController.js"></script>
+      <script type="text/javascript" src="js/CatalogDetailController.js"></script>
+      <script type="text/javascript" src="js/CartController.js"></script>
+      <script>
+         $(document).ready(function (){
+            $("#nav-placeholder").load("index.html");
+         });
+      </script>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+    		<div class="invoice-title">
+			<h2>Phulmoo</h2>
+			</div>
+			<div class="col-xs-6">
+				<h5>GSTIN:-</h5>
+				<h5>STATE:-</h5>
+				</div>
+				<div class="col-xs-6 text-right">
+				<h5>INVOICE DATE</h5>
+				<h5>INVOICE NO.</h5>
+				</div>
+				<center><h5>TAX INVOICE</h5></center>
+				<hr>
+				<table class="table table-hover table-condensed">
+				<thead>
+					<tr>
+						<th style="width:25%">CUSTOMER NAME</th>
+						<th style="width:35%">BILLING ADDRESS</th>
+						<th style="width:40%">SHIPPING ADDRESS</th>
+					</tr>
+				</thead>
+				</table><br><br><br><br><br><br>
+				<table class="table table-hover table-condensed">
+				<thead>
+					<tr>
+						<th style="width:30%">CUSTOMER GSTIN</th>
+						<th style="width:70%">PLACE OF SUPPLY</th>
+					</tr>
+				</thead>
+				</table><br><br><br><br><br><br>
+    	</div>
+    </div>
+    
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="panel panel-default">
+    			<div class="panel-heading">
+    				<h3 class="panel-title"><strong>BILLING STATEMENT</strong></h3>
+    			</div>
+    			<div class="panel-body">
+    				<div class="table-responsive">
+    					<table class="table table-condensed">
+    						<thead>
+									<tr>
+										<th style="width:9%">SR. NO.</th>
+										<th style="width:9%">ITEM NO.</th>
+										<th style="width:9%">PRODUCT</th>
+										<th style="width:9%">DATE</th>
+										<th style="width:9%">QTY.</th>
+										<th style="width:9%">AMOUNT</th>
+										<th style="width:9%">TAX AMT</th>
+										<th style="width:9%">CGST@2.5%</th>
+										<th style="width:9%">SGST@2.5%</th>
+										<th style="width:9%">IGST</th>
+										<th style="width:10%">TOTAL</th>
+									</tr>
+								</thead>
+    						<tbody>
+    							<tr>
+    								<td class="text-center">1</td>
+    								<td class="text-center">123554</td>
+    								<td class="text-center">COTTON</td>
+    								<td class="text-center">12-03-18</td>
+    								<td class="text-center">2</td>
+    								<td class="text-center">2700</td>
+    								<td class="text-center">1900</td>
+    								<td class="text-center">57</td>
+    								<td class="text-center">57</td>
+    								<td class="text-center">114</td>
+    								<td class="text-center">2714</td>
+    							</tr>
+    							<tr>
+    								<td class="text-center">2</td>
+    								<td class="text-center">123554</td>
+    								<td class="text-center">COTTON</td>
+    								<td class="text-center">12-03-18</td>
+    								<td class="text-center">2</td>
+    								<td class="text-center">2700</td>
+    								<td class="text-center">1900</td>
+    								<td class="text-center">57</td>
+    								<td class="text-center">57</td>
+    								<td class="text-center">114</td>
+    								<td class="text-center">2714</td>
+    							</tr>
+    						</tbody>
+							<tfoot style="font-weight: bold;">
+							<td colspan="5" style="text-align: center;">TOTAL</td>
+							<td class="text-center">123554</td>
+							<td class="text-center">COTTON</td>
+							<td class="text-center">12-03-18</td>
+							<td class="text-center">2</td>
+							<td class="text-center">2700</td>
+							<td class="text-center">1900</td>
+							</tfoot>
+    					</table>
+    				</div>
+    			</div>
+    		</div><br>
+			<div class="text-right" style="font-weight: bold;">
+				<h5 style="font-weight: bold;">FOR PHULMOO</h5><br>
+				<h5 style="font-weight: bold; border-top-style: solid; border-width: 10%;">AUTH. SIGNATORY</h5>
+				</div><br><br><br><br>
+				<h4 style="text-align: center;">THANK YOU, VISIT AGAIN!</h4>
+				<hr style="lin: bold; ">
+				<b>PHULMOO.COM, V.P.O- KHARWAR, TEHSIL-BHORANJ, DISTT. HAMIRPUR, HP-176041, MOB:9418025114. T&C AVAUKABKE AT PHULMOO.COM</b>
+    	</div>
+    </div>
+</div>
+</body>
+</html>

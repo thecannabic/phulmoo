@@ -1,0 +1,31 @@
+ <!-- blocks starts here -->
+	 <div class="row col-sum-12" style="margin-top:10px; margin-left: 20px; margin-right: 20px;">
+		<div id="container" class="row" >
+        <div ng-repeat="item in products">
+		<div class="block1 col-sm-4 catalog-tile-div" style="border:1px solid #e6e6e6; margin-bottom: 20px;">
+		<div style="width:100%">
+		<div style="border: .5px solid #DBDBDB; border-radius: 8px;">
+			<a href="catalog-detail.html?pid={{item.productID}}" ng-click="loadProductDetail(item)" ng-model="item" ><img src="{{item.productImage}}" alt="IMG-BANNER" style="width: auto; height:270px;"></a>
+              <div>
+			  <h4 class="product-name">
+						<a >{{item.productName}}</a>
+					</h4>
+					<h5 >{{item.productCategoryID}}</h5> 
+					<h5 >{{item.productShortDesc}}</h5>
+                <h5 class="title-price">{{item.productPrice}}</h5>
+				</div>
+				<div class="add-to-cart">
+						<button class="add-to-cart-btn" style="bottom-margin: 0; width:50%"><i class="fa fa-shopping-cart"></i> add to cart</button>
+					</div>
+		          </div>
+		        </div>
+		      </div>
+	        </div>
+	     </div>
+	</div>
+	
+	
+	
+	
+	
+	

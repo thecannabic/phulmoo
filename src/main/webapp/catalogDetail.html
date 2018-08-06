@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Phulmoo">
+<head>
+<title>Catalog detail</title>
+<a href="home.html"></a>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+</link>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link type="text/css" rel="stylesheet" href="css/home.css">
+</link>
+<link type="text/css" rel="stylesheet" href="css/catalogs.css">
+</link>
+<link type="text/css" rel="stylesheet" href="css/catalogs-detail.css">
+</link>
+<link type="text/css" rel="stylesheet" href="css/cart.css">
+</link>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-route.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<script type="text/javascript" src="js/angular-chart.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/ui-bootstrap.2.5.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery-validate.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/Util.js"></script>
+<script type="text/javascript" src="js/RegistrationController.js"></script>
+<script type="text/javascript" src="js/controller/HomeController.js"></script>
+<script type="text/javascript" src="js/controller/CatalogsController.js"></script>
+<script type="text/javascript" src="js/controller/AboutUsController.js"></script>
+<script type="text/javascript" src="js/controller/RegisterController.js"></script>
+<script type="text/javascript" src="js/CatalogDetailController.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$("#nav-placeholder").load("index.html");
+	});
+</script>
+</head>
+<body ng-controller="CatalogDetailController">
+	<div id="nav-placeholder"></div>
+	<div class="container" id="product-section">
+		<div class="row">
+			<!--div class="col-md-6">
+               <img src="{{productInfo.productImage}}" alt="Banner-1"
+               	style="height: 500px; width: auto; margin-top: 20px; border: solid .5px #dbdbdb;">
+               </div!-->
+			<!--- end!-->
+			<div id="myCarousel" class="carousel slide col-md-6"
+				data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<img src="{{productInfo.productImage}}" alt="Los Angeles"
+							style="height: 500px; width: auto;">
+					</div>
+					<div class="item">
+						<img src="{{productInfo.productImage}}" alt="Chicago"
+							style="height: 500px; width: auto;">
+					</div>
+					<div class="item">
+						<img src="{{productInfo.productImage}}" alt="New york"
+							style="height: 500px; width: auto;">
+					</div>
+				</div>
+				<a class="left carousel-control" href="#myCarousel"
+					data-slide="prev"> <span
+					class="glyphicon glyphicon-chevron-left"></span> <span
+					class="sr-only">Previous</span>
+				</a> <a class="right carousel-control" href="#myCarousel"
+					data-slide="next"> <span
+					class="glyphicon glyphicon-chevron-right"></span> <span
+					class="sr-only">Next</span>
+				</a>
+			</div>
+			<!--- end!-->
+			<div class="col-md-6">
+				<div class="container-fluid">
+					<div class="content-wrapper">
+						<div class="item-container">
+							<div class="container">
+								<div class="col-md-7">
+									<b style="font-size: 20px;">
+										<div class="product-title">{{productInfo.productName}}</div>
+									</b>
+									<div class="product-rating">
+										<i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i>
+										<i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i>
+										<i class="fa fa-star-o"></i>
+									</div>
+									<hr>
+									<div class="product-price">
+										<b>Price</b> Rs. {{productInfo.productPrice}}
+									</div>
+									<div class="product-stock"
+										style="font-size: 20px; font-color: red;">In Stock</div>
+									<hr>
+									<p class="item property">{{productInfo.productLongDesc}}</p>
+									<hr>
+									<!--<button type="button" class="btn btn-success"
+                                 style="width: 125px; height: 50px; font-size: 20px;">
+                                 Buy Now</button>onclick="document.getElementById('id01').style.display='block'"-->
+									<button ng-click="orderProduct(productInfo)" type="button"
+										class="btn btn-success"
+										style="width: 125px; height: 50px; font-size: 20px;">
+										Buy Now</button>
+									<div class="btn-group wishlist">
+										<button ng-click="addToCart(productInfo)" type="button"
+											class="btn btn-danger"
+											style="width: 125px; height: 50px; font-size: 20px;">
+											Add to Cart</button>
+									</div>
+									<br> <br>
+									<div class="btn-group wishlist">
+										<button type="button" ng-click="continueShopping()"
+											class="btn btn-danger"
+											style="width: 250px; height: 50px; font-size: 20px;">
+											Continue Shopping</button>
+									</div>
+									<br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="col-md-12 product-info">
+			<ul id="myTab" class="nav nav-tabs nav_tabs">
+				<li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
+				<li><a href="#service-two" data-toggle="tab">PRODUCT INFO</a></li>
+				<li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in active" id="service-one">
+					<section class="container product-info">
+						<li>{{productInfo.productCartDesc}}</li>
+						<li>{{productInfo.productLongDesc}}</li>
+						<li>{{productInfo.productShortDesc}}</li>
+					</section>
+				</div>
+				<div class="tab-pane fade" id="service-two">
+					<section class="container">
+						<table class="table table-bordered" border="2"
+							style="margin: 10px;">
+							<tbody>
+								<tr>
+									<th scope="row">Item No.</th>
+									<td>A-1234567</td>
+								</tr>
+								<tr>
+									<th scope="row">Top</th>
+									<td>---</td>
+								</tr>
+								<tr>
+									<th scope="row">Bottom</th>
+									<td>---</td>
+								</tr>
+								<tr>
+									<th scope="row">Dupatta</th>
+									<td>---</td>
+								</tr>
+								<tr>
+									<th scope="row">Top Width</th>
+									<td>---</td>
+								</tr>
+								<tr>
+									<th scope="row">Top Length</th>
+									<td>---</td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<h3>WASHING CARE:-</h3>
+						<li>Don't use chemical & bleach.</li>
+						<li>Soak the fabric in water before stitching.</li>
+						<li>Soak each piece seperately.</li>
+						<li>Wash colored & white fabric seperately.</li>
+						<li>Don't dry in direct sunlight.</li>
+						<li>Iron on monderate temprature inside out.</li>
+						<li>Dry clean Recommended.</li>
+					</section>
+				</div>
+				<div class="tab-pane fade" id="service-three">
+					<div class="product-desc"></div>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</div>
+	<!-- Popup Login -->
+	<div id="id01" class="modal col-sm-12">
+		<form class="modal-content animate" action=""
+			style="width: fit-content;">
+			<div class="imgcontainer">
+				<span
+					onclick="document.getElementById('id01').style.display='none';"
+					class="close" title="Close Modal">&times;</span> <img
+					src="images/login.jpg" alt="Avatar" class="avatar"
+					style="width: 10em">
+			</div>
+			<div class="container">
+				<label for="uname"><b>Username</b></label> <input type="text"
+					placeholder="Enter Username" name="uname" required> <label
+					for="psw"><b>Password</b></label> <input type="password"
+					placeholder="Enter Password" name="psw" required>
+				<button type="button" onclick="authenticate()">Login</button>
+				<label> <input type="checkbox" checked="checked"
+					name="remember"> Remember me
+				</label> <label> <a
+					onclick="document.getElementById('id05').style.display='block'">
+						Registration </a>
+				</label>
+			</div>
+			<div class="container" style="background-color: #f1f1f1">
+				<button type="button"
+					onclick="document.getElementById('id01').style.display='none'"
+					class="cancelbtn">Cancel</button>
+				<span class="psw">Forgot <a href="#">password?</a></span>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

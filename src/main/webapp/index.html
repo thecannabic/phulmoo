@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html ng-app="Phulmoo">
+
+<head>
+<title>Phulmoo Home</title>
+
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"></link>
+
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link type="text/css" rel="stylesheet" href="css/home.css"></link>
+<link type="text/css" rel="stylesheet" href="css/catalogs.css"></link>
+<link type="text/css" rel="stylesheet" href="css/cart.css"></link>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-route.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<script type="text/javascript" src="js/angular-chart.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/ui-bootstrap.2.5.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery-validate.min.js"></script>
+
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/Util.js"></script>
+<script type="text/javascript" src="js/RegistrationController.js"></script>
+<script type="text/javascript" src="js/UINotifications.js"></script>
+<script type="text/javascript" src="js/controller/HomeController.js"></script>
+<script type="text/javascript" src="js/controller/CatalogsController.js"></script>
+<script type="text/javascript" src="js/controller/AboutUsController.js"></script>
+</head>
+
+<body style="background: #E6E6E6; onload="setDefaults()">
+	<nav class="navbar navbar-inverse" style="margin-bottom: 1px;">
+		<div class="container-fluid" style="padding-right: 20px !important">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Phulmoo</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#/home">Home</a></li>
+				<li><a href="#/catalogs">Catalogs</a></li>
+				<li><a href="#/aboutus">About us</a></li>
+				<li><input type="text" placeholder="What you are looking for"></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><div id="unlogged-div" style="margin-right: 5px;">
+						<!-- document.getElementById('id01').style.display='block' -->
+						<button
+							onclick="checkUser()"
+							type="button" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-user"></span> User
+						</button>
+					</div></li>
+				<li><div class="dropdown" id="logged-div"
+						style="display: none; margin-right: 5px;">
+						<button
+							style="visibility: hidden; background-color: #222222 !important;"
+							id="user-info-btn" class="btn btn-primary dropdown-toggle"
+							type="button" data-toggle="dropdown">
+							UserLoggedIn<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Profile</a></li>
+							<li><a href="#">Orders</a></li>
+							<li><a href="#" onclick="logout()">Logout</a></li>
+						</ul>
+					</div></li>
+
+				<li>
+					<!-- <a href="#cart-shipping"> <span
+											class="glyphicon glyphicon-shopping-cart"></span>
+									</a>-->
+					<div id="unlogged-div" style="margin-right: 5px;">
+						<a href="cart.html"><button
+							type="button" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-shopping-cart"></span> Cart
+						</button></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="gpalerts">
+		<div class="alert alert-success" style="display: none">
+			<a onclick="dismissSuccessAlerts()" class="close" aria-label="close">ï¿½</a>
+			<div class="message">
+				<!-- <strong>Successful!</strong> Message to be displayed here. -->
+			</div>
+		</div>
+
+		<div class="alert alert-info" style="display: none">
+			<a onclick="dismissInfoAlerts" class="close" aria-label="close">ï¿½</a>
+			<div class="message">
+				<!-- <strong>Information!</strong> Message to be displayed here. -->
+			</div>
+		</div>
+
+		<div class="alert alert-warning" style="display: none">
+			<a onclick="dismissWarningAlerts" class="close" aria-label="close">ï¿½</a>
+			<div class="message">
+				<!-- <strong>Warning!</strong> Message to be displayed here. -->
+			</div>
+		</div>
+		<div class="alert alert-danger" style="display: none">
+			<a class="close" onclick="dismissErrorAlerts" aria-label="close">ï¿½</a>
+			<div class="message">
+				<!-- <strong>Error!</strong> Message to be displayed here. -->
+			</div>
+		</div>
+	</div>
+	<div id="ng-view" class="col-sm-12" ng-view style="padding-right: 1px; padding-left: 1px;"></div>
+	<!-- Modal -->
+	
+	
+	<!-- <div id="ng-load" style="text-align: center; margin: 0 auto;">
+		<img alt="Loading..." src="images/loading.gif">
+	</div>
+	<div id="ng-reload" style="text-align: center; margin: 0 auto;">
+		<h5>Failed to load the requested display. Please check your
+			network connection to the GridPort and try again.</h5>
+		<BR> <BR> <a id="reloadBtn" class="btn btn-default"
+			href="javascript:window.location.reload();">Reload</a>
+	</div> -->
+	<div id="id02">
+		<form>
+			<span onclick="document.getElementById('id02').style.display='none';"
+				title="Close Modal"> </span>
+		</form>
+	</div>
+</body>
+
+</html>
