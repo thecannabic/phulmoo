@@ -61,7 +61,7 @@ angular.module('Phulmoo', [])
 								if(data){
 								//alert(data.orderID);
 								var oId=parseInt(data.orderID);
-								$window.location.href="/PhulmooServer/orderDetail.html?tempoid="+oId;
+								$window.location.href="orderDetail.html?tempoid="+oId;
 								
 									//$scope.productInfo.productImage="images/banner-"+$scope.productInfo.productID+".jpg";
 									//console.log($scope.products[i].productImage);
@@ -92,7 +92,7 @@ angular.module('Phulmoo', [])
 						//if not logged in insert the data in orders based on the ip address of the user
 						console.log('user not logged in');
 						sessionStorage.setItem("v-pid",product.productID);
-						$window.location.href="/PhulmooServer/login.html";
+						$window.location.href="login.html";
 					}
 					//finally
 					//proceed to order details

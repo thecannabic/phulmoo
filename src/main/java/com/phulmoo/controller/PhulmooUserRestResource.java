@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.phulmoo.BillingAPI;
+import com.phulmoo.MailAPI;
 import com.phulmoo.entity.Order;
 import com.phulmoo.entity.PhulmooUser;
 import com.phulmoo.modal.OrderUIModel;
@@ -94,12 +95,12 @@ public class PhulmooUserRestResource {
 		return PhulmooUser;
 	}
 
-	@GET
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/generateBillingInfo")
 	public ResponseEntity generateBillingInfo(OrderUIModel oum) {
-		Order order=new Order();
+		Order order = new Order();
 		order.setOrderID(Integer.valueOf(oum.getAddress().getOrderId()));
 		String path = BillingAPI.generatePDF(order, oum);
 		// use the same file path to send mail from here
@@ -107,12 +108,37 @@ public class PhulmooUserRestResource {
 		if (path == null) {
 			status.setResponseCode(-1);
 			status.setResponseMessage("Failed");
-		}
-		else {
+		} else {
 			status.setResponseCode(-1);
 			status.setResponseMessage("Failed");
-			status.setResponseMessage(path);
+			status.setResponseData(path);
 		}
+		return status;
+	}
+
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/sendMail")
+	public ResponseEntity sendMail(String csv) {
+		// order should be email, subject, message, file path for attachment if any
+		String[] mailItems = csv.split(",");
+		String email = mailItems[0];
+		String subject = mailItems[1];
+		String message = mailItems[2];
+		String attachment = "";
+		if (mailItems.length > 3)
+			attachment = mailItems[3];
+
+		//Order order = new Order();
+		//order.setOrderID(Integer.valueOf(oum.getAddress().getOrderId()));
+		// String path = BillingAPI.generatePDF(order, oum);
+		MailAPI.sendMail(email, subject, message, attachment);
+		// use the same file path to send mail from here
+		ResponseEntity status = new ResponseEntity();
+		status.setResponseCode(0);
+		status.setResponseMessage("Failed");
+		status.setResponseData("Done");
 		return status;
 	}
 

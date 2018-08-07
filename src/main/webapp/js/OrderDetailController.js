@@ -18,9 +18,14 @@ angular
 							$scope.OrderId = 0;
 
 							$scope.billingInfo = function() {
-								
-								//var order={"OrderID":$scope.orderModel.address.orderId};
-								
+								console.log('sending billing info');
+
+								// var
+								// order={"OrderID":$scope.orderModel.address.orderId};
+								var orderUIModal = {
+									"products" : $scope.products,
+									"address" : $scope.address
+								};
 								$http({
 									method : 'POST',
 									url : URL + FN_BILLING_INFO,
@@ -29,21 +34,20 @@ angular
 										'Accept' : 'application/json',
 										'Content-Type' : 'application/json'
 									},
-									data : $scope.orderModel,
+									data : orderUIModal,
 									dataType : 'json',
 								})
 										.then(
 												function mySuccess(response) {
 													console.log(response);
-													if (response.data) {
-														$scope.address = response.data.responseData.address;
-														$scope.products = response.data.responseData.products;
-													}
+
+													$scope
+															.sendMail(response.data.responseData);
+
 												}, function myError(response) {
 													console.log(response);
 												});
 
-							
 							};
 
 							$scope.getOrders = function() {
@@ -81,7 +85,32 @@ angular
 							};
 
 							$scope.getOrders();
+							$scope.sendMail = function(filePath) {
+								$http(
+										{
+											method : 'POST',
+											url : URL + FN_SEND_MAIL,
+											crossDomain : true,
+											headers : {
+												'Accept' : 'application/json',
+												'Content-Type' : 'application/json'
+											},
+											data : "thecannabic@gmail.com,SAMPLE,SAMPLE BODY,"
+													+ filePath,
+											dataType : 'json',
+										})
+										.then(
+												function mySuccess(response) {
+													console.log(response);
 
+													if (response.data.responseData
+															&& response.data.responseData == "Done") {
+														window.location.href = "/Phulmoo";
+													}
+												}, function myError(response) {
+													console.log(response);
+												});
+							}
 							$scope.validateAndProcessOrder = function(input) {
 								// need to validate
 								var orderInfo = {
@@ -104,7 +133,6 @@ angular
 									"products" : $scope.products,
 									"address" : $scope.address
 								};
-								$scope.orderModel=orderUIModal;
 
 								$http({
 									method : 'POST',

@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.phulmoo.Phulmoo</groupId>
-	<artifactId>PhulmooServer</artifactId>
+	<artifactId>Phulmoo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Phulmoo</name>
-	<description>PhulmooServer</description>
+	<description>Phulmoo</description>
 	<properties>
 		<springframework.version>4.3.5.RELEASE</springframework.version>
 		<hibernate.version>4.3.6.Final</hibernate.version>
@@ -16,7 +16,7 @@
 		<mail.version>1.4.1</mail.version>
 	</properties>
 	<build>
-		<finalName>PhulmooServer</finalName>
+		<finalName>Phulmoo</finalName>
 		<directory>target</directory>
 		<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
 		<outputDirectory>target/classes</outputDirectory>

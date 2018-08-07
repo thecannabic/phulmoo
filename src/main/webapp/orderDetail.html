@@ -2,7 +2,7 @@
 <html ng-app="Phulmoo">
 <head>
 <title>Order Detail</title>
-<a href="home.html"></a>
+<a href="/"></a>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,30 +25,47 @@
 <script type="text/javascript" src="js/controller/AboutUsController.js"></script>
 <script type="text/javascript" src="js/CatalogDetailController.js"></script>
 <script type="text/javascript" src="js/OrderDetailController.js"></script>
-<script type="text/javascript" src="https://js.instamojo.com/v1/checkout.js"></script>
-      <script type="text/javascript">
-         function loadMojo(){
-         Instamojo.configure({
-			handlers: {
-			  onOpen: function() {},
-			  onClose: function() {},
-			  onSuccess: function(response) {
-				alert('success');
-			  },
-			  onFailure: function(response) {
-				alert('falied');
-			  }
-			}
-		  });
-		  }
-		  function startPay(){
-		  Instamojo.open("https://instamojo.com/@phulmoo");
-		  }
-      </script>
+<script src="https://js.instamojo.com/v1/checkout.js"></script>
+    <script>
+      /* Start client-defined Callback Handler Functions */
+      function onOpenHandler () {
+        alert('Payments Modal is Opened');
+      }
+
+      function onCloseHandler () {
+        alert('Payments Modal is Closed');
+      }
+
+      function onPaymentSuccessHandler (response) {
+        alert('Payment Success');
+        console.log('Payment Success Response', response);
+        angular.element(document.getElementById('contact_billing_information')).scope().billingInfo();
+      }
+
+      function onPaymentFailureHandler (response) {
+        alert('Payment Failure');
+        console.log('Payment Failure Response', response);
+      }
+      /* End client-defined Callback Handler Functions */
+
+      /* Configuring Handlers */
+      Instamojo.configure({
+        handlers: {
+          onOpen: onOpenHandler,
+          onClose: onCloseHandler,
+          onSuccess: onPaymentSuccessHandler,
+          onFailure: onPaymentFailureHandler
+        }
+      });
+      
+      function startPay() {
+        Instamojo.open('http://www.instamojo.com/@phulmoo');
+      }
+    </script>
       <script>
          $(document).ready(function (){
             $("#nav-placeholder").load("index.html");
-			loadMojo();
+			//loadMojo();
          });
       </script>
 </head>
@@ -182,7 +199,7 @@
                                     </div>
                                 </div>
                             </div>
-						<button type="button" class="btn btn-danger btn-lg" style="width:30%;" ng-click="validateAndProcessOrder()">Proceed & Pay
+						<button type="button" class="btn btn-danger btn-lg" style="width:30%;" ng-click="billingInfo()">Proceed & Pay
 					</button>
 					<br/>
 					<div style="text-align: left;"><br/>
