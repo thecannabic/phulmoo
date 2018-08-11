@@ -124,20 +124,17 @@
 					</tbody>
 					</table>
 					</div>
-                            <h4 >
-                                <div style="text-align: center; width:40%;">
-                                <a style="width:100%; height: 40px; font-size: 20px;"
-                                   data-toggle="collapse"
-                                   class="btn btn-danger"
-                                   onclick="$(this).fadeOut(); $('#payInfo').fadeIn();">Continue to billing information</a></div>
-                                    </h4>
+					</div>
+					</div>
+					 <input type="checkbox" id="myCheck"> Check this to use your default address for delivery.
+					     <br><br>
                              <div class="panel-group" id="contact_billing_information">
                                 <div class="panel panel-default">
                                    <div class="panel panel-primary">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                                <a>
-                                            <b>Contact and billing </b>
+                                        <a>
+                                        <b>Contact and billing </b>
                                         </a>
                                         </h4>
                                     </div>
@@ -148,10 +145,10 @@
                                         <table class="table table-striped" style="font-weight: bold;">
                                             <tr>
                                                 <td style="width: 175px;">
-                                                    <label for="id_email">Email Address:</label></td>
+                                                    <label for="id_email" >Email Address:</label></td>
                                                 <td>
-                                                    <input class="form-control" id="id_email" name="first_name"
-													ng-model="OrderEmail" type="text"/>
+                                                    <input type="email" class="form-control" id="id_email" name="first_name"
+													ng-model="OrderEmail" required />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -164,15 +161,25 @@
                                             </tr>
                                             <tr>
                                                 <td style="width: 175px;">
-                                                    <label for="id_address_line_1">Address:</label></td>
+                                                    <label for="id_address">Address:</label></td>
                                                 <td>
                                                     <input class="form-control" id="id_address"
-                                                           name="address_line_1" required="required" ng-model="OrderShipAddress" type="text"/>
+                                                           name="address" required="required" ng-model="OrderShipAddress" type="text"/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td style="width: 175px;">
-                                                    <label for="id_city">City:</label></td>
+                                                    <label for="id_address_line_1">Address2:</label></td>
+                                                <td>
+                                                    <input class="form-control" id="id_address"
+                                                           name="address_line_1" required="required" ng-model="OrderShipAddress2" type="text"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 175px;">
+                                                    <label for="id_city">City:</label>
+                                                    </td>
+                                                    
                                                 <td>
                                                     <input class="form-control" id="id_city" name="city"
                                                            required="required" ng-model="OrderCity" type="text"/>
@@ -180,10 +187,12 @@
                                             </tr>
                                             <tr>
                                                 <td style="width: 175px;">
-                                                    <label for="id_postalcode">Postalcode:</label></td>
+                                                    <label for="id_postalcode">Postalcode:</label>
+                                                    </td>
                                                 <td>
                                                     <input class="form-control" id="id_postalcode" name="postalcode"
-                                                           required="required" ng-model="OrderZip" type="text"/>
+                                                           required="required" ng-model="OrderZip" type="text" style="width: 700px;"/>
+                                                           <button type="button" class="btn btn-primary btn-sm" style="width: 125px;">Check Availability</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -193,15 +202,15 @@
                                                     <input class="form-control" id="id_phone" name="phone" ng-model="OrderPhone" type="text"/>
                                                 </td>
                                             </tr>
-
                                         </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <p><input type="checkbox" id="footerCheck"> By clicking Proceed & Pay you agree to T&C <a href="#">View here.</a> </p>
 						<button type="button" class="btn btn-danger btn-lg" style="width:30%;" ng-click="billingInfo()">Proceed & Pay
 					</button>
-					<br/>
+					<br>
 					<div style="text-align: left;"><br/>
 						If you have any questions about our products or services please contact us
 						before placing this order.
@@ -213,8 +222,5 @@
 </div>
 </div>
 </div>
-</div>
 </body>
 </html>
-
-
