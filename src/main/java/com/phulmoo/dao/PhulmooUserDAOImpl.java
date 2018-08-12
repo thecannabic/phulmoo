@@ -59,10 +59,17 @@ public class PhulmooUserDAOImpl implements PhulmooUserDAO {
 		Query query = entityManager.createQuery("from PhulmooUser where Username= :uname");
 		query.setParameter("uname", userInput.getUsername());
 		PhulmooUser user = (PhulmooUser) query.getSingleResult();
+		String userPass = userInput.getPassword();
+		String realPass = user.getUserPassword();
+
 		if (user != null) {
-			query = entityManager.createQuery("from Session where UserID= :ID");
-			query.setParameter("ID", user.getUserID());
-			return (Session) query.getSingleResult();
+			if (userPass.equalsIgnoreCase(realPass)) {
+				query = entityManager.createQuery("from Session where UserID= :ID");
+				query.setParameter("ID", user.getUserID());
+				Session session = (Session) query.getSingleResult();
+				session.setEmail(user.getUserFirstName());
+				return session;
+			}
 		}
 		return null;
 	}
@@ -127,18 +134,13 @@ public class PhulmooUserDAOImpl implements PhulmooUserDAO {
 		order.setOrderState("HP");
 		order.setOrderFax("");
 		order.setOrderTax("0");
-		
+
 		order.setOrderShipAddress2("");
-		Order newObj=entityManager.merge(order);
-		
-		
-		
-		
-		
-		
-		//entityManager.refresh(order);
-		//entityManager.
-		order=newObj;
+		Order newObj = entityManager.merge(order);
+
+		// entityManager.refresh(order);
+		// entityManager.
+		order = newObj;
 
 		System.out.println("Customer order updated: [" + order.getOrderID() + "]");
 
@@ -206,7 +208,7 @@ public class PhulmooUserDAOImpl implements PhulmooUserDAO {
 		// if (order.getOrderID() > 0)
 		// return order;
 		// else
-		//entityManager.refresh(order);
+		// entityManager.refresh(order);
 		return order;
 	}
 

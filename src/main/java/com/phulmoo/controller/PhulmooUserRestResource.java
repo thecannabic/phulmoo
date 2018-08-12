@@ -193,13 +193,13 @@ public class PhulmooUserRestResource {
 				status.setResponseData(user);
 			} else {
 				status.setResponseCode(-1);
-				status.setResponseMessage("User not found");
+				status.setResponseMessage("Either username or password is invalid");
 				status.setResponseData(user);
 			}
 
 		} catch (Exception e) {
 			status.setResponseCode(-1);
-			status.setResponseMessage("Failed to login : User not found");
+			status.setResponseMessage("Failed to login : Either username or password is invalid");
 			System.out.println(e.getMessage());
 		}
 		return status;

@@ -50,6 +50,7 @@ public class PhulmooUserServiceImpl implements PhulmooUserService {
 			userInput.setToken(session.getToken());
 			userInput.setPassword(null);
 			userInput.setUserId(session.getUserID());
+			userInput.setFirstName(session.getEmail());
 			return userInput;
 		}
 		return null;
@@ -67,9 +68,9 @@ public class PhulmooUserServiceImpl implements PhulmooUserService {
 
 	public PhulmooUserModal register(PhulmooUserModal input) {
 		PhulmooUser userObj = userDAO.register(input);
-		
+
 		if (userObj != null) {
-			PhulmooUserModal output=new PhulmooUserModal();
+			PhulmooUserModal output = new PhulmooUserModal();
 			output.setUsername(userObj.getUsername());
 			output.setUserId(userObj.getUserID());
 			return output;
@@ -88,16 +89,16 @@ public class PhulmooUserServiceImpl implements PhulmooUserService {
 		return order;
 	}
 
-	public Order insertOrderItem(ProductModal model,PhulmooUser user) {
-		Order order =new Order();
+	public Order insertOrderItem(ProductModal model, PhulmooUser user) {
+		Order order = new Order();
 		order.setOrderUserID(user.getUserID());
 		order.setOrderAmount(Integer.parseInt(model.getProductPrice()));
-		OrderDetail orderDetail=new OrderDetail();
+		OrderDetail orderDetail = new OrderDetail();
 		orderDetail.setDetailPrice(model.getProductPrice());
 		orderDetail.setDetailProductID(model.getProductID());
 		orderDetail.setDetailQuantity("1");
-		
-		return userDAO.insertOrderItem(order,orderDetail);
+
+		return userDAO.insertOrderItem(order, orderDetail);
 	}
 
 	public ArrayList<Order> getOrderList(String userId) {
@@ -106,9 +107,9 @@ public class PhulmooUserServiceImpl implements PhulmooUserService {
 	}
 
 	public OrderUIModel getOrderDetail(String orderId) {
-		int id=Integer.valueOf(orderId);
-		OrderUIModel model=userDAO.getOrderDetail(id);
-		
+		int id = Integer.valueOf(orderId);
+		OrderUIModel model = userDAO.getOrderDetail(id);
+
 		return model;
 	}
 
