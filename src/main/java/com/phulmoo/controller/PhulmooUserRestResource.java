@@ -130,8 +130,8 @@ public class PhulmooUserRestResource {
 		if (mailItems.length > 3)
 			attachment = mailItems[3];
 
-		//Order order = new Order();
-		//order.setOrderID(Integer.valueOf(oum.getAddress().getOrderId()));
+		// Order order = new Order();
+		// order.setOrderID(Integer.valueOf(oum.getAddress().getOrderId()));
 		// String path = BillingAPI.generatePDF(order, oum);
 		MailAPI.sendMail(email, subject, message, attachment);
 		// use the same file path to send mail from here
@@ -187,13 +187,20 @@ public class PhulmooUserRestResource {
 		ResponseEntity status = new ResponseEntity();
 		try {
 			user = userService.token(phulmooUserModal);
-			status.setResponseCode(0);
-			status.setResponseMessage("User logged in");
-			status.setResponseData(user);
+			if (user != null) {
+				status.setResponseCode(0);
+				status.setResponseMessage("User logged in");
+				status.setResponseData(user);
+			} else {
+				status.setResponseCode(-1);
+				status.setResponseMessage("User not found");
+				status.setResponseData(user);
+			}
 
 		} catch (Exception e) {
-			status.setResponseCode(1);
-			status.setResponseMessage("Failed to login :" + e.getMessage());
+			status.setResponseCode(-1);
+			status.setResponseMessage("Failed to login : User not found");
+			System.out.println(e.getMessage());
 		}
 		return status;
 	}

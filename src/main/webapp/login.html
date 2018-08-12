@@ -34,14 +34,14 @@
 <script type="text/javascript" src="js/CatalogDetailController.js"></script>
 <script type="text/javascript" src="js/RegistrationLoginController.js"></script>
 <script>
-function hideFunction() {
-    var x = document.getElementById("registration-form");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
+	function hideFunction() {
+		var x = document.getElementById("registration-form");
+		if (x.style.display === "none") {
+			x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		}
+	}
 </script>
 </head>
 <body ng-controller="RegistrationLoginController">
@@ -49,54 +49,57 @@ function hideFunction() {
 	<div class="container" id="product-section">
 		<div id="loginDiv" class="col-sm-12">
 
-		<form
-			style="width: fit-content;">
-			<div class="imgcontainer">
-				 <img
-					src="images/login.jpg" alt="Avatar" class="avatar"
-					style="width: 10em">
-			</div>
+			<form style="width: fit-content;">
+				<div class="imgcontainer">
+					<img src="images/login.jpg" alt="Avatar" class="avatar"
+						style="width: 10em">
+				</div>
+				<div id="err-message-div" class="alert alert-danger"
+					style="display: none">
+					<strong>Error !</strong> {{message}}
+				</div>
+				<div class="container">
+					<label for="uname"><b>Username</b></label> <input type="text"
+						ng-model="uname" placeholder="Enter username" name="uname"
+						required> <label for="psw"><b>Password</b></label> <input
+						type="password" placeholder="Enter password" name="psw"
+						ng-model="psw" required>
 
-			<div class="container">
-				<label for="uname"><b>Username</b></label> <input type="text"
-					placeholder="Enter Username" name="uname" required> <label
-					for="psw"><b>Password</b></label> <input type="password"
-					placeholder="Enter Password" name="psw" required>
+					<button type="button" ng-click="login()">Login</button>
+					<label> <input type="checkbox" checked="checked"
+						name="remember"> Remember me
+					</label> <label> <a id="registration-form-link"
+						onclick="hideFunction()"> Registration </a>
+					</label>
+				</div>
 
-				<button type="button" ng-click="login()">Login</button>
-				<label> <input type="checkbox" checked="checked"
-					name="remember"> Remember me
-				</label> <label> <a id="registration-form-link"
-					onclick="hideFunction()">
-						Registration </a>
-				</label>
-			</div>
-
-			<div class="container" style="background-color: #f1f1f1">
-				<button type="button"
-					onclick="document.getElementById('id01').style.display='none'"
-					class="cancelbtn">Cancel</button>
-				<span class="psw">Forgot <a href="#">password?</a></span>
-			</div>
-		</form>
-		<form id="registration-form">
-			    <label for="email"><b>Email</b></label>
-			    <input type="text" placeholder="Enter Email" name="email" required>
-			
-			    <label for="psw"><b>Password</b></label>
-			    <input type="password" placeholder="Enter Password" name="psw" required>
-			
-			    <label for="psw-repeat"><b>Repeat Password</b></label>
-			    <input type="password" placeholder="Repeat Password" name="psw-repeat" required> 
-			    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-			
-			    <div class="clearfix">
-			      <button type="button" class="cancelbtn">Cancel</button>
-			      <button type="submit" class="signupbtn">Sign Up</button>
-			    </div>
+				<div class="container" style="background-color: #f1f1f1">
+					<button type="button"
+						onclick="document.getElementById('id01').style.display='none'"
+						class="cancelbtn">Cancel</button>
+					<span class="psw">Forgot <a href="#">password?</a></span>
+				</div>
 			</form>
-	        </div>
-			</div>
+			<form id="registration-form">
+				<label for="email"><b>Email</b></label> <input type="text"
+					placeholder="Enter Email" name="email" required> <label
+					for="psw"><b>Password</b></label> <input type="password"
+					placeholder="Enter Password" name="psw" required> <label
+					for="psw-repeat"><b>Repeat Password</b></label> <input
+					type="password" placeholder="Repeat Password" name="psw-repeat"
+					required>
+				<p>
+					By creating an account you agree to our <a href="#"
+						style="color: dodgerblue">Terms & Privacy</a>.
+				</p>
+
+				<div class="clearfix">
+					<button type="button" class="cancelbtn">Cancel</button>
+					<button type="submit" class="signupbtn">Sign Up</button>
+				</div>
+			</form>
 		</div>
+	</div>
+	</div>
 </body>
 </html>

@@ -30,7 +30,7 @@
 <script type="text/javascript" src="js/controller/AboutUsController.js"></script>
 </head>
 
-<body style="background: #E6E6E6; onload="setDefaults()">
+<body style="background: #E6E6E6;"setDefaults()">
 	<nav class="navbar navbar-inverse" style="margin-bottom: 1px;">
 		<div class="container-fluid" style="padding-right: 20px !important">
 			<div class="navbar-header">
@@ -45,9 +45,8 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><div id="unlogged-div" style="margin-right: 5px;">
 						<!-- document.getElementById('id01').style.display='block' -->
-						<button
-							onclick="checkUser()"
-							type="button" class="btn btn-default btn-sm">
+						<button onclick="checkUser()" type="button"
+							class="btn btn-default btn-sm">
 							<span class="glyphicon glyphicon-user"></span> User
 						</button>
 					</div></li>
@@ -71,10 +70,10 @@
 											class="glyphicon glyphicon-shopping-cart"></span>
 									</a>-->
 					<div id="unlogged-div" style="margin-right: 5px;">
-						<a href="cart.html"><button
-							type="button" class="btn btn-default btn-sm">
-							<span class="glyphicon glyphicon-shopping-cart"></span> Cart
-						</button></a>
+						<a href="cart.html"><button type="button"
+								class="btn btn-default btn-sm">
+								<span class="glyphicon glyphicon-shopping-cart"></span> Cart
+							</button></a>
 					</div>
 				</li>
 			</ul>
@@ -109,10 +108,10 @@
 			</div>
 		</div>
 	</div>
-	<div id="ng-view" class="col-sm-12" ng-view style="padding-right: 1px; padding-left: 1px;"></div>
+	<div id="ng-view" class="col-sm-12" ng-view
+		style="padding-right: 1px; padding-left: 1px;"></div>
 	<!-- Modal -->
-	
-	
+
 	<!-- <div id="ng-load" style="text-align: center; margin: 0 auto;">
 		<img alt="Loading..." src="images/loading.gif">
 	</div>
@@ -129,5 +128,4 @@
 		</form>
 	</div>
 </body>
-
 </html>

@@ -21,7 +21,10 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/phulmoo" />
+		<!-- <property name="url" value="jdbc:mysql://172.17.0.1:3306/phulmoo_main_db" /> -->
+		 <property name="url" value="jdbc:mysql://localhost:3306/phulmoo" />
+		<!-- <property name="username" value="phulmoo_phulmoo" />
+		<property name="password" value="Goldenh3@rtS" /> -->
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
